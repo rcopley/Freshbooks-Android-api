@@ -46,7 +46,8 @@ public class CustomXStream extends XStream {
         registerConverter(BooleanConverter.BINARY);
         registerConverter(new DateConverter("yyyy-MM-dd", new String[0]));
         registerConverter(new SingleValueConverter() {
-            @Override
+            @SuppressWarnings("rawtypes")
+			@Override
             public boolean canConvert(Class type) {
                 return type.equals(Long.class);
             }
@@ -64,7 +65,8 @@ public class CustomXStream extends XStream {
             }
         });
         registerConverter(new SingleValueConverter() {
-            @Override
+            @SuppressWarnings("rawtypes")
+			@Override
             public boolean canConvert(Class type) {
                 return type.equals(Double.class);
             }
@@ -93,6 +95,7 @@ public class CustomXStream extends XStream {
             }
         });
         registerConverter(new Converter() {
+			@SuppressWarnings("rawtypes")
 			@Override
 			public boolean canConvert(Class arg0) {
 				return arg0.equals(Credit.class);
@@ -149,7 +152,8 @@ public class CustomXStream extends XStream {
      */  
     protected MapperWrapper wrapMapper(MapperWrapper next) {
         return new MapperWrapper(next) {
-            public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+            @SuppressWarnings("rawtypes")
+			public boolean shouldSerializeMember(Class definedIn, String fieldName) {
                 try {
                 	//check wrapped mapper first so that omitField will still work
                 	if ( !super.shouldSerializeMember(definedIn, fieldName) ) {

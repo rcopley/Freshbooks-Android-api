@@ -15,8 +15,8 @@ import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import com.freshbooks.model.Callback;
 import com.freshbooks.model.Callbacks;
@@ -42,7 +42,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.mapper.CannotResolveClassException;
 
 public class ApiConnection {
-    static final Logger logger = LoggerFactory.getLogger(ApiConnection.class);
+    //static final Logger logger = LoggerFactory.getLogger(ApiConnection.class);
 
     URL url;
     String key;
@@ -113,10 +113,10 @@ public class ApiConnection {
                 InputStream is = method.getResponseBodyAsStream();
                 if(debug) {
                 	byte[] bytes = IOUtils.toByteArray(is);
-                    logger.info("POST "+url+":\n"+paramString
+                    /*logger.info("POST "+url+":\n"+paramString
                         +"\nYields "+method.getResponseContentLength()
                         +" bytes of "+method.getResponseCharSet()+" data:\n"+
-                        new String(bytes, method.getResponseCharSet()));
+                        new String(bytes, method.getResponseCharSet()));*/
                     is = new ByteArrayInputStream(bytes);
                 }
                 try {
