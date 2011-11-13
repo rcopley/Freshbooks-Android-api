@@ -6,7 +6,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import com.freshbooks.ApiConnection;
 import com.freshbooks.ApiException;
@@ -24,8 +24,8 @@ public class DumpAccount {
      * @throws ParseException 
      */
     public static void main(String[] args) throws ParseException {
-        url = args[0];
-        key = args[1];
+        String url = args[0];
+        String key = args[1];
     	
     	/*
     	String url = "";
