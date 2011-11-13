@@ -24,8 +24,14 @@ public class DumpAccount {
      * @throws ParseException 
      */
     public static void main(String[] args) throws ParseException {
-        String url = "";
+        url = args[0];
+        key = args[1];
+    	
+    	/*
+    	String url = "";
     	String key = "";
+    	  	
+    	
     	if(args.length == 0) {
         	Scanner kb = new Scanner(System.in);
             System.out.println("Usage: dump URL API-KEY");
@@ -38,7 +44,7 @@ public class DumpAccount {
         } else {
         	url = args[0];
         	key = args[1];
-        }
+        } */
     	
         try {
             ApiConnection con = new ApiConnection(new URL(url), key, "FreshBooks Java API Client Test");

@@ -35,14 +35,15 @@ import com.thoughtworks.xstream.converters.basic.BooleanConverter;
 import com.thoughtworks.xstream.converters.basic.DateConverter;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-import com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer;
+import com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder;
+//import com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 import com.thoughtworks.xstream.mapper.CannotResolveClassException;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
 
 public class CustomXStream extends XStream {
     public CustomXStream() {
-        super(null, new XppDriver(new XmlFriendlyReplacer("::", "_")));
+        super(null, new XppDriver(new XmlFriendlyNameCoder("::", "_")));
         registerConverter(BooleanConverter.BINARY);
         registerConverter(new DateConverter("yyyy-MM-dd", new String[0]));
         registerConverter(new SingleValueConverter() {

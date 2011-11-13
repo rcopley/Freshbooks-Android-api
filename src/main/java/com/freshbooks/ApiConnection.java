@@ -9,9 +9,16 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthScope;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.auth.AuthScope;
+//import org.apache.http.client.methods.HttpPost;
+
+
+//import org.apache.commons.httpclient.HttpClient;
+//import org.apache.commons.httpclient.UsernamePasswordCredentials;
+//import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.io.IOUtils;
@@ -41,6 +48,8 @@ import com.freshbooks.model.Response;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.mapper.CannotResolveClassException;
 
+import com.freshbooks.CustomXStream;
+
 public class ApiConnection {
     //static final Logger logger = LoggerFactory.getLogger(ApiConnection.class);
 
@@ -60,10 +69,11 @@ public class ApiConnection {
     }
 
     private HttpClient getClient() {
+    	//TODO re-write getClient() to utilize DefaultHttpClient
         if(client == null) {
-            client = new HttpClient();
-            client.getParams().setAuthenticationPreemptive(true);
-            client.getState().setCredentials(new AuthScope(url.getHost(), 443, AuthScope.ANY_REALM), new UsernamePasswordCredentials(key, ""));
+            client = new DefaultHttpClient();
+            client.getParams().setAuthenticationPreemptive(true); // makes client authenticate "preemptively"
+            client.getState().setCredentials(new AuthScope(url.getHost(), 443, AuthScope.ANY_REALM), new UsernamePasswordCredentials(key, "")); // Sets chreditials
         }
         return client;
     }
